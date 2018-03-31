@@ -1,0 +1,23 @@
+
+Input( String consoleLog )
+----------------------------------
+
+(Sample)
+
+	 * java.lang.NumberFormatException: For input string: "foo" // at
+	 * java.lang.NumberFormatException.forInputString(Unknown Source) // at
+	 * java.lang.Integer.parseInt(Unknown Source) // at
+	 * java.lang.Integer.parseInt(Unknown Source) // at //
+	 * edu.ncstate.csc510.okeclipse.handlers.LoudConsoleImpl.main(LoudConsoleImpl.java:18)
+	 * // java.lang.ArrayIndexOutOfBoundsException: 33 // at //
+	 * edu.ncstate.csc510.okeclipse.handlers.LoudConsoleImpl.main(LoudConsoleImpl.java:25)
+	
+
+then Output ( return List<String>() )
+----------------------------------------------------------------------------------
+
+Containing 2 strings in this case,
+ 
+  java.lang.NumberFormatException
+  java.lang.ArrayIndexOutOfBoundsException
+  

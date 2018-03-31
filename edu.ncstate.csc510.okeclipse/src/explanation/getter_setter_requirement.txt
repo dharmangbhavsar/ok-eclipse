@@ -1,0 +1,32 @@
+
+Input( String javaSourceCode )
+----------------------------------
+
+public class Apple {
+
+	private int seeds;
+	private String color;
+
+}
+
+then Output ( return String with generated getters and setters for all variables )
+----------------------------------------------------------------------------------
+public class Apple {
+
+	private int seeds;
+	private String color;
+	
+	public int getSeeds() {
+		return seeds;
+	}
+	public void setSeeds(int seeds) {
+		this.seeds = seeds;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+}

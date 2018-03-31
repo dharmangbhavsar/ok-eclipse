@@ -1,0 +1,32 @@
+
+Input
+--------
+
+String javaSourceCode will contain similar to
+-----------------------------------------------
+
+public class Car {
+	
+
+}
+
+String interfaceCode will contain similar to
+------------------------------------------------
+
+public interface Vehicle {
+
+	public void start();
+	
+	public boolean stop();
+
+} 
+
+then Output should be ( return String with implemented text)
+----------------------------------------------------------------------------------
+public class Car implements Vehicle{
+	
+	public void start(){ }
+	
+	public boolean stop() { return false; }
+
+}
