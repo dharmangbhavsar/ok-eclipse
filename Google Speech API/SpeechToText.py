@@ -36,15 +36,17 @@ with sr.Microphone(device_index = device_id, sample_rate = sample_rate, chunk_si
     print("Say Something")
     #listening
     audio = r.listen(source)
-         
+    file = open('../command.cd', 'w') 
     try:
         text = r.recognize_google(audio)
-        print("you said: " + text)
+        file.write(text)
      
    	#error when not recognised
      
     except sr.UnknownValueError:
+        file.write("failed")
         print("Google Speech Recognition could not understand audio")
      
     except sr.RequestError as e:
         print("Could not request results from Google Speech Recognition service; {0}".format(e))
+    file.close()
