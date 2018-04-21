@@ -1,0 +1,8 @@
+class class_name{
+variable_type variable_data_type variable_name
+class_name(){
+}
+} 
+
+
+
