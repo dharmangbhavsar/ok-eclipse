@@ -33,6 +33,16 @@
             id="edu.ncstate.csc510.okeclipse.injectinterface"
             name="interface">
       </command>
+      <command
+            categoryId="edu.ncstate.csc510.okeclipse.commands.category"
+            id="edu.ncstate.csc510.okeclipse.gitstatus"
+            name="Git Status">
+      </command>
+      <command
+            categoryId="edu.ncstate.csc510.okeclipse.commands.category"
+            id="edu.ncstate.csc510.okeclipse.gitcommit"
+            name="Git commit">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -55,6 +65,14 @@
       <handler
             class="edu.ncstate.csc510.okeclipse.handlers.InjectInterfaceHandler"
             commandId="edu.ncstate.csc510.okeclipse.injectinterface">
+      </handler>
+      <handler
+            class="edu.ncstate.csc510.okeclipse.handlers.GitStatusHandler"
+            commandId="edu.ncstate.csc510.okeclipse.gitstatus">
+      </handler>
+      <handler
+            class="edu.ncstate.csc510.okeclipse.handlers.GitCommitHandler"
+            commandId="edu.ncstate.csc510.okeclipse.gitcommit">
       </handler>
    </extension>
    <extension
@@ -94,6 +112,18 @@
             contextId="org.eclipse.ui.contexts.window"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
             sequence="M2+N">
+      </key>
+      <key
+            commandId="edu.ncstate.csc510.okeclipse.gitstatus"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M2+S">
+      </key>
+      <key
+            commandId="edu.ncstate.csc510.okeclipse.gitcommit"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M2+P">
       </key>
    </extension>
    <extension
@@ -210,5 +240,4 @@
             class="edu.ncstate.csc510.okeclipse.preferences.PreferenceInitializer">
       </initializer>
    </extension>
-
 </plugin>

@@ -3,6 +3,7 @@ package edu.ncstate.csc510.okeclipse.common;
 import java.io.IOException;
 
 import org.eclipse.jface.text.BadLocationException;
+import org.eclipse.jgit.api.errors.GitAPIException;
 
 /**
  * 
@@ -24,6 +25,13 @@ public interface ISoundProgrammer {
 	 * 
 	 * @return
 	 */
+	
+	public void testCode(String javaClassprime) throws BadLocationException, IOException;
+	
+	public void getGitStatus() throws BadLocationException, IOException, GitAPIException;
+	
+	public void gitCommitAndPush() throws BadLocationException, IOException, GitAPIException;
+	
 	public String generateMainMethod();
 
 	/**

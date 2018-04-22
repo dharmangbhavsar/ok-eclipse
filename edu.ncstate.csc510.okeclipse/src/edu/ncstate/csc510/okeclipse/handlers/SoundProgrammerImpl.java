@@ -16,6 +16,13 @@ import edu.ncstate.csc510.okeclipse.builder.SOAnswerBuilder;
 import edu.ncstate.csc510.okeclipse.common.ISoundProgrammer;
 import edu.ncstate.csc510.okeclipse.util.Util;
 
+import java.io.File;
+import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.Status;
+import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
+
 /**
  * 
  * This class contains the implementation of the Sound Programmer features
@@ -231,6 +238,46 @@ public class SoundProgrammerImpl implements ISoundProgrammer {
 
 	}
 
+	@Override
+	public void testCode(String javaClassprime) throws BadLocationException, IOException {
+		insertContent("Hello World!", 1);
+		return;
+	}
+	
+	@Override
+	public void getGitStatus() throws BadLocationException, IOException, GitAPIException {
+//		try {
+//			FileRepositoryBuilder builder = new FileRepositoryBuilder();
+//	    	try (Repository repository =builder
+//	        	    .setGitDir(new File("C:/Users/tushi/Documents/GitHub/ok-eclipse/.git"))
+//	        	    .build()) {
+	    		
+	    		
+//	            try (Git git = new Git(repository)) {
+	    		 try (Git git = Git.open( new File( "C:/Users/tushi/Documents/GitHub/ok-eclipse/.git" )) ){
+	                Status status = git.status().call();
+	                System.out.println("Added: " + status.getAdded());
+	                System.out.println("Changed: " + status.getChanged());
+	                System.out.println("Conflicting: " + status.getConflicting());
+	                System.out.println("ConflictingStageState: " + status.getConflictingStageState());
+	                System.out.println("IgnoredNotInIndex: " + status.getIgnoredNotInIndex());
+	                System.out.println("Missing: " + status.getMissing());
+	                System.out.println("Modified: " + status.getModified());
+	                System.out.println("Removed: " + status.getRemoved());
+	                System.out.println("Untracked: " + status.getUntracked());
+	                System.out.println("UntrackedFolders: " + status.getUntrackedFolders());
+	            }
+//	        }
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}
+	}
+	
+	@Override
+	public void gitCommitAndPush() throws BadLocationException, IOException, GitAPIException{
+		
+	}
+	
 	private static String clean(String code) {
 
 		String cleanedCode = code;
