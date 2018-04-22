@@ -18,10 +18,12 @@ import edu.ncstate.csc510.okeclipse.util.Util;
 
 import java.io.File;
 import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.PushCommand;
 import org.eclipse.jgit.api.Status;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
+import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 
 /**
  * 
@@ -274,8 +276,33 @@ public class SoundProgrammerImpl implements ISoundProgrammer {
 	}
 	
 	@Override
-	public void gitCommitAndPush() throws BadLocationException, IOException, GitAPIException{
-		
+	public void gitCommitAndPush() throws BadLocationException, IOException, GitAPIException
+	{
+		final File localPath;
+    	FileRepositoryBuilder builder = new FileRepositoryBuilder();
+
+        try (Repository repository = builder
+          	    .setGitDir(new File("C:/Users/tushi/Documents/GitHub/test/.git"))
+          	    .build()) {
+            localPath = repository.getWorkTree();
+
+            try (Git git = new Git(repository)) {
+                // Stage all files in the repo including new files
+                git.add().addFilepattern(".").call();
+
+                // and then commit the changes.
+                git.commit()
+                        .setMessage("Commit all changes including additions")
+                        .call();
+
+                System.out.println("Committed all changes to repository at " + repository.getDirectory());
+                
+                PushCommand pushCommand = git.push();
+                pushCommand.setCredentialsProvider(new UsernamePasswordCredentialsProvider("username", "password"));
+                // you can add more settings here if needed
+                pushCommand.call();
+            }
+        }
 	}
 	
 	private static String clean(String code) {
