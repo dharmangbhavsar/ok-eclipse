@@ -13,9 +13,9 @@ import edu.ncstate.csc510.okeclipse.util.Util;
 /**
  * 
  * @author Tushita R
- *Invoked for Git Status command
+ *Invoked for Git Commit command
  */
-public class GitStatusHandler extends AbstractHandler {
+public class GitPushHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -23,7 +23,7 @@ public class GitStatusHandler extends AbstractHandler {
 		ISoundProgrammer programmer = new SoundProgrammerImpl();
 
 		try {
-			programmer.getGitStatus();
+			programmer.gitPush();
 //			IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
 //			IHandlerService handlerService = (IHandlerService) window.getService(IHandlerService.class);
 //			handlerService.executeCommand("org.eclipse.jdt.ui.edit.text.java.format", null);

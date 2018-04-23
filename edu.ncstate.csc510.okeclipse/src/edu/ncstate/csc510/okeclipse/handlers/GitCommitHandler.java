@@ -12,8 +12,8 @@ import edu.ncstate.csc510.okeclipse.util.Util;
 
 /**
  * 
- * @author Shrikanth N C
- *Invoked for inject code command
+ * @author Tushita R
+ *Invoked for Git Commit command
  */
 public class GitCommitHandler extends AbstractHandler {
 
@@ -23,10 +23,10 @@ public class GitCommitHandler extends AbstractHandler {
 		ISoundProgrammer programmer = new SoundProgrammerImpl();
 
 		try {
-			programmer.gitCommitAndPush();
-			IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
-			IHandlerService handlerService = (IHandlerService) window.getService(IHandlerService.class);
-			handlerService.executeCommand("org.eclipse.jdt.ui.edit.text.java.format", null);
+			programmer.gitCommit();
+//			IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
+//			IHandlerService handlerService = (IHandlerService) window.getService(IHandlerService.class);
+//			handlerService.executeCommand("org.eclipse.jdt.ui.edit.text.java.format", null);
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}

@@ -86,7 +86,8 @@ public class CommandsBuilder {
 			commands.add(new OECommand("testing","edu.ncstate.csc510.okeclipse.testcode"));
 			commands.add(new OECommand("status","edu.ncstate.csc510.okeclipse.gitstatus"));
 			commands.add(new OECommand("commit","edu.ncstate.csc510.okeclipse.gitcommit"));
-			commands.add(new OECommand("pull","edu.ncstate.csc510.okeclipse.gitstatus"));
+			commands.add(new OECommand("push","edu.ncstate.csc510.okeclipse.gitpush"));
+			commands.add(new OECommand("pull","edu.ncstate.csc510.okeclipse.gitpull"));
 			commands.add(new OECommand("convert","edu.ncstate.csc510.okeclipse.gitstatus"));			
 			appendEclipseCommands();
 

@@ -1,6 +1,7 @@
 package edu.ncstate.csc510.okeclipse.handlers;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,11 +19,16 @@ import edu.ncstate.csc510.okeclipse.util.Util;
 
 import java.io.File;
 import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.PullCommand;
 import org.eclipse.jgit.api.PushCommand;
+import org.eclipse.jgit.api.RemoteAddCommand;
 import org.eclipse.jgit.api.Status;
 import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.internal.storage.file.FileRepository;
 import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
+import org.eclipse.jgit.transport.URIish;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 
 /**
@@ -248,14 +254,6 @@ public class SoundProgrammerImpl implements ISoundProgrammer {
 	
 	@Override
 	public void getGitStatus() throws BadLocationException, IOException, GitAPIException {
-//		try {
-//			FileRepositoryBuilder builder = new FileRepositoryBuilder();
-//	    	try (Repository repository =builder
-//	        	    .setGitDir(new File("C:/Users/tushi/Documents/GitHub/ok-eclipse/.git"))
-//	        	    .build()) {
-	    		
-	    		
-//	            try (Git git = new Git(repository)) {
 	    		 try (Git git = Git.open( new File( "C:/Users/tushi/Documents/GitHub/ok-eclipse/.git" )) ){
 	                Status status = git.status().call();
 	                System.out.println("Added: " + status.getAdded());
@@ -269,14 +267,10 @@ public class SoundProgrammerImpl implements ISoundProgrammer {
 	                System.out.println("Untracked: " + status.getUntracked());
 	                System.out.println("UntrackedFolders: " + status.getUntrackedFolders());
 	            }
-//	        }
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}
 	}
 	
 	@Override
-	public void gitCommitAndPush() throws BadLocationException, IOException, GitAPIException
+	public void gitCommit() throws BadLocationException, IOException, GitAPIException
 	{
 		final File localPath;
     	FileRepositoryBuilder builder = new FileRepositoryBuilder();
@@ -288,6 +282,13 @@ public class SoundProgrammerImpl implements ISoundProgrammer {
 
             try (Git git = new Git(repository)) {
                 // Stage all files in the repo including new files
+            	
+            	Iterable<RevCommit> commits = git.log().all().call();
+                //int count = 0;
+                for (RevCommit commit : commits) {
+                    System.out.println("LogCommit: " + commit);
+                }
+            	
                 git.add().addFilepattern(".").call();
 
                 // and then commit the changes.
@@ -296,13 +297,53 @@ public class SoundProgrammerImpl implements ISoundProgrammer {
                         .call();
 
                 System.out.println("Committed all changes to repository at " + repository.getDirectory());
-                
-                PushCommand pushCommand = git.push();
-                pushCommand.setCredentialsProvider(new UsernamePasswordCredentialsProvider("username", "password"));
-                // you can add more settings here if needed
-                pushCommand.call();
+
             }
         }
+	}
+	
+	@Override
+	public void gitPush() throws BadLocationException, IOException, GitAPIException, URISyntaxException
+	{
+		final File localPath;
+    	FileRepositoryBuilder builder = new FileRepositoryBuilder();
+
+        try (Repository repository = builder
+          	    .setGitDir(new File("C:/Users/tushi/Documents/GitHub/test/.git"))
+          	    .build()) {
+            localPath = repository.getWorkTree();
+
+            try (Git git = new Git(repository)) {
+            	RemoteAddCommand remoteAddCommand = git.remoteAdd();
+            	remoteAddCommand.setName("origin");
+            	remoteAddCommand.setUri(new URIish("https://github.com/tushitarc/test"));
+            	remoteAddCommand.call();
+                
+                //Push Changes
+                PushCommand pushCommand = git.push();
+                pushCommand.setCredentialsProvider(new UsernamePasswordCredentialsProvider("username", "password"));
+                pushCommand.call();
+                
+                System.out.println("Pushed all changes to repository");
+            }
+        }
+	}
+	
+	@Override
+	public void gitPull() throws BadLocationException, IOException, GitAPIException
+	{
+		try {
+	        Repository localRepo = new FileRepository("C:/Users/tushi/Documents/GitHub/test/.git");//localPath.getAbsolutePath() + "/.git");
+	        Git git = new Git(localRepo);
+
+	            PullCommand pullCmd = git.pull();
+	            pullCmd.call();
+	            
+	        System.out.println("Pulled all changes from repository");
+	    } catch (GitAPIException | IOException ex) {
+	        //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+	    }
+
 	}
 	
 	private static String clean(String code) {

@@ -41,7 +41,17 @@
       <command
             categoryId="edu.ncstate.csc510.okeclipse.commands.category"
             id="edu.ncstate.csc510.okeclipse.gitcommit"
-            name="Git commit">
+            name="Git Commit">
+      </command>
+      <command
+            categoryId="edu.ncstate.csc510.okeclipse.commands.category"
+            id="edu.ncstate.csc510.okeclipse.gitpush"
+            name="Git Push">
+      </command>
+      <command
+            categoryId="edu.ncstate.csc510.okeclipse.commands.category"
+            id="edu.ncstate.csc510.okeclipse.gitpull"
+            name="Git Pull">
       </command>
    </extension>
    <extension
@@ -73,6 +83,14 @@
       <handler
             class="edu.ncstate.csc510.okeclipse.handlers.GitCommitHandler"
             commandId="edu.ncstate.csc510.okeclipse.gitcommit">
+      </handler>
+      <handler
+            class="edu.ncstate.csc510.okeclipse.handlers.GitPushHandler"
+            commandId="edu.ncstate.csc510.okeclipse.gitpush">
+      </handler>
+      <handler
+            class="edu.ncstate.csc510.okeclipse.handlers.GitPullHandler"
+            commandId="edu.ncstate.csc510.okeclipse.gitpull">
       </handler>
    </extension>
    <extension
@@ -123,7 +141,19 @@
             commandId="edu.ncstate.csc510.okeclipse.gitcommit"
             contextId="org.eclipse.ui.contexts.window"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M2+T">
+      </key>
+       <key
+            commandId="edu.ncstate.csc510.okeclipse.gitpush"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
             sequence="M2+P">
+      </key>
+         <key
+            commandId="edu.ncstate.csc510.okeclipse.gitpull"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M2+U">
       </key>
    </extension>
    <extension
