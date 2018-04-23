@@ -71,4 +71,6 @@ public interface ISoundProgrammer {
 	 */
 	public void insertContent(String content, int position) throws BadLocationException;
 
+	public void generateCode(String string) throws BadLocationException, IOException ;
+
 }

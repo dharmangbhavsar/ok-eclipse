@@ -40,6 +40,7 @@ public class Code_generation {
         String s= sc.nextLine();
         String[] word = s.split(" ");
       
+     
         switch (word[1]){
             case "function":
             {

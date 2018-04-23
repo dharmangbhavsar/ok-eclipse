@@ -29,7 +29,11 @@ import com.sohelper.fetchers.StackoverflowFetcher;
 import com.sohelper.ui.QuestionPage;
 
 import edu.ncstate.csc510.okeclipse.util.Util;
-
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import static java.lang.Integer.parseInt;
 /**
  * 
  * @author Shrikanth N C
@@ -41,7 +45,8 @@ public class SOAnswerBuilder {
 	private static final String FILENAME = "soresponse.html";
 
 	private StringBuffer content = new StringBuffer();
-
+	
+	private static final String BASE_PATH = System.getProperty("user.dir") + "\\ok-eclipse\\edu.ncstate.csc510.okeclipse\\src\\edu\\ncstate\\csc510\\okeclipse";
 	/**
 	 * @author M.S.Karthik
 	 * @param questions
@@ -183,6 +188,163 @@ public class SOAnswerBuilder {
 		}
 
 		return stackoverflowAnswers;
+	}
+
+	public void create_function(String[] word) throws FileNotFoundException, IOException {
+	        String name=word[2];            //name of function
+	        String count_parameter= word[5];
+	        int count= parseInt(count_parameter);int i=0;
+	        String parameter_datatype= word[6];
+	        String return_type=word[word.length-1];
+	        BufferedReader filein =new BufferedReader(new FileReader(BASE_PATH + "\\skeleton\\function.txt"));
+	        BufferedWriter fileout =new BufferedWriter(new FileWriter(BASE_PATH + "\\skeleton\\function_output.java"));
+	        String line=filein.readLine();
+	        String parameter_final="";
+	        System.out.println(System.getProperty("user.dir"));
+	        
+	        while(i < count){
+	       
+	           
+	            int ascii = 97+i;
+	                
+	                
+	            parameter_final=parameter_final+" "+parameter_datatype+" "+(char)ascii+",";
+	            //System.out.println((char)ascii);
+	            i++;
+	        }
+	        if(count!=0){
+	            
+	            parameter_final=parameter_final.substring(0, parameter_final.length()-1);
+	        }
+	        
+	         if(count==0)
+	        {
+	            parameter_final="";
+	        }
+	            
+	        
+	        
+	        
+	        
+	        //System.out.println(parameter_final);
+	        while(line!=null)
+	        {
+	            line = line.replace("datatype", return_type);  
+	          line=line.replace("name", name);
+	            
+	          line=line.replace("parameter", parameter_final);
+	          
+	          if (return_type.compareTo("void")==0)
+	          {
+	              line=line.replace("return null;", " ");
+	          }
+	           if (return_type.compareTo("int")==0 ||return_type.compareTo("float")==0||return_type.compareTo("double")==0)
+	          {
+	              line=line.replace("return null;", "return 0;");
+	          }
+	         
+	            if (return_type.compareTo("boolean")==0)
+	          {
+	              line=line.replace("return null;", "return false;");
+	          }
+	         
+	         
+	            System.out.println(line);
+	          
+	            
+	           try{
+	            fileout.write(line);
+	            fileout.newLine();
+	           }catch(IOException e){
+	               System.out.println(e);
+	           }
+	           line=filein.readLine();
+	        }
+	        fileout.close();
+	        
+	        
+	       
+	}
+	
+	public void create_class(String[] word) throws IOException {
+	         String name=word[2];            //name of function
+	        String count_var= word[4];
+	        int count= parseInt(count_var);int i=0;
+	        String var_type= word[5];
+	        String var_datatype= word[6];
+	        BufferedReader filein =new BufferedReader(new FileReader(BASE_PATH + "\\skeleton\\class.txt"));
+	        BufferedWriter fileout =new BufferedWriter(new FileWriter(BASE_PATH + "\\skeleton\\class_output.java"));
+	        String line=filein.readLine();
+	    
+	        
+	        //generate class abc with 3 public int variables 
+	        String final_var="";
+	         while(i < count){
+	          int ascii = 97+i;
+	            final_var=final_var+" "+(char)ascii+",";
+	            i++;
+	        }
+	        if(count!=0){
+	            
+	            final_var=final_var.substring(0, final_var.length()-1);
+	        }
+	        
+	         if(count==0)
+	        {
+	          final_var  ="";
+	        }
+	         final_var=final_var+";";
+	         name=name.toUpperCase();
+	         while(line!=null)
+	        {
+	           
+	         line=line.replace("class_name", name);
+	         line=line.replace("variable_type", var_type);
+	         line=line.replace("variable_data_type", var_datatype);
+	         line=line.replace("variable_name",final_var);
+	          
+	       
+	         
+	            System.out.println(line);
+	          
+	            
+	           try{
+	            fileout.write(line);
+	            fileout.newLine();
+	           }catch(IOException e){
+	               System.out.println(e);
+	           }
+	           line=filein.readLine();
+	        }
+	        fileout.close();
+	        
+	}
+	public void create_loop(String[] word) throws IOException {
+	      String limit=word[3];            //number of iterations
+	        int count= parseInt(limit);int i=0;
+	        BufferedReader filein =new BufferedReader(new FileReader(BASE_PATH + "\\skeleton\\loop.txt"));
+	        BufferedWriter fileout =new BufferedWriter(new FileWriter(BASE_PATH + "\\skeleton\\loop_output.java"));
+	        String line=filein.readLine();
+	    
+	        
+	        //generate class abc with 3 public int variables 
+	         while(line!=null)
+	        {
+	           
+	         line=line.replace("limit", limit);
+	            System.out.println(line);
+	          
+	            
+	           try{
+	            fileout.write(line);
+	            fileout.newLine();
+	           }catch(IOException e){
+	               System.out.println(e);
+	           }
+	           line=filein.readLine();
+	        }
+	        fileout.close();
+	          
 	}
 
 //	private void openExternalBrowser(URL url) throws PartInitException, MalformedURLException {

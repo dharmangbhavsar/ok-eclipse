@@ -391,6 +391,64 @@ public class SoundProgrammerImpl implements ISoundProgrammer {
 		return content;
 	}
 
+	@Override
+	public void generateCode(String javaClassprime) throws BadLocationException, IOException {
+		// TODO Auto-generated method stub
+		SOAnswerBuilder answerBuilder = new SOAnswerBuilder();
+
+		char[] characters = javaClassprime.toCharArray();
+
+		int start = -1;
+		int end = -1;
+
+		int added = 0;
+
+		for (int index = 0; index < javaClassprime.toCharArray().length; index++) {
+
+			if (end > start) {
+				String generateStr = javaClassprime.substring(start, end).trim();
+				
+				String[] word = generateStr.split(" ");
+			    System.out.println("-->" + generateStr);
+			    System.out.println(word[1]);
+		        switch (word[1]){
+		            case "function":
+		            {
+		            	answerBuilder.create_function(word);
+		                break;
+		            }
+		            case "class":{
+		            	answerBuilder.create_class(word);
+		                
+		                break;
+		            }
+		            case "loop":{
+		            	answerBuilder.create_loop(word);
+		                
+		                break;
+		            }
+		            default:
+		            {
+		                System.out.println("Error");
+		                break;
+		            
+		            }
+		                
+		        }
+
+				start = -1;
+				end = -1;
+			}
+
+			if (start > 0 && end == -1 && characters[index] == '$') {
+				end = index - 1;
+			} else if (start == -1 && characters[index] == '$') {
+				start = index + 1;
+			}
+
+		}
+	}
+
 	// @Override
 	// public void injectCode(String javaClassprime) throws BadLocationException,
 	// IOException {
@@ -476,10 +534,9 @@ public class SoundProgrammerImpl implements ISoundProgrammer {
 	// insertContent(output.get(x), count.get(x));
 	// }
 	// }
-}
 
 //
-
+}
 // {
 // if (answer.isUpVoted())
 // {

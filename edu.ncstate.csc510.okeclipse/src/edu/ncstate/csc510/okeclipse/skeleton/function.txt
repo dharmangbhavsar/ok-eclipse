@@ -1,0 +1,5 @@
+public static class class_name{
+public static datatype name(parameter){
+    return null;
+}
+}

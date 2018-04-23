@@ -53,6 +53,11 @@
             id="edu.ncstate.csc510.okeclipse.gitpull"
             name="Git Pull">
       </command>
+      <command
+      		categoryId="edu.ncstate.csc510.okeclipse.commands.category"
+            id="edu.ncstate.csc510.okeclipse.generate"
+            name="Generate">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -91,6 +96,11 @@
       <handler
             class="edu.ncstate.csc510.okeclipse.handlers.GitPullHandler"
             commandId="edu.ncstate.csc510.okeclipse.gitpull">
+      </handler>
+      
+      <handler
+      		class="edu.ncstate.csc510.okeclipse.handlers.GenerationHandler"
+            commandId="edu.ncstate.csc510.okeclipse.generate">
       </handler>
    </extension>
    <extension
@@ -154,6 +164,12 @@
             contextId="org.eclipse.ui.contexts.window"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
             sequence="M2+U">
+      </key>
+      <key
+      		commandId="edu.ncstate.csc510.okeclipse.generate"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M2+G">
       </key>
    </extension>
    <extension
