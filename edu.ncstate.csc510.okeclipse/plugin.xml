@@ -58,6 +58,11 @@
             id="edu.ncstate.csc510.okeclipse.generate"
             name="Generate">
       </command>
+      <command
+      		categoryId="edu.ncstate.csc510.okeclipse.commands.category"
+            id="edu.ncstate.csc510.okeclipse.unittest"
+            name="Unit Test">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -96,11 +101,14 @@
       <handler
             class="edu.ncstate.csc510.okeclipse.handlers.GitPullHandler"
             commandId="edu.ncstate.csc510.okeclipse.gitpull">
-      </handler>
-      
+      </handler>      
       <handler
       		class="edu.ncstate.csc510.okeclipse.handlers.GenerationHandler"
             commandId="edu.ncstate.csc510.okeclipse.generate">
+      </handler>
+      <handler
+      		class="edu.ncstate.csc510.okeclipse.handlers.TestHandler"
+            commandId="edu.ncstate.csc510.okeclipse.unittest">
       </handler>
    </extension>
    <extension
@@ -121,19 +129,19 @@
             commandId="edu.ncstate.csc510.okeclipse.injectcode"
             contextId="org.eclipse.ui.contexts.window"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="M2+C">
+            sequence="M2+I">
       </key>
       <key
             commandId="edu.ncstate.csc510.okeclipse.analyzeconsole"
             contextId="org.eclipse.ui.contexts.window"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="M2+C">
+            sequence="M2+A">
       </key>
       <key
             commandId="edu.ncstate.csc510.okeclipse.injectmain"
             contextId="org.eclipse.ui.contexts.window"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="M2+B">
+            sequence="M2+M">
       </key>
       <key
             commandId="edu.ncstate.csc510.okeclipse.injectinterface"
@@ -151,7 +159,7 @@
             commandId="edu.ncstate.csc510.okeclipse.gitcommit"
             contextId="org.eclipse.ui.contexts.window"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="M2+T">
+            sequence="M2+C">
       </key>
        <key
             commandId="edu.ncstate.csc510.okeclipse.gitpush"
@@ -170,6 +178,12 @@
             contextId="org.eclipse.ui.contexts.window"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
             sequence="M2+G">
+      </key>
+      <key
+      		commandId="edu.ncstate.csc510.okeclipse.unittest"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M2+T">
       </key>
    </extension>
    <extension
