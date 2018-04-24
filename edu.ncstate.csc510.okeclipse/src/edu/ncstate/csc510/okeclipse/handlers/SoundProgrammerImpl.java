@@ -43,6 +43,9 @@ public class SoundProgrammerImpl implements ISoundProgrammer {
 	 * 
 	 * @author charan
 	 */
+	
+	public final static String BASE_PATH = System.getProperty("user.dir") + "/ok-eclipse/";
+	
 	@Override
 	public String generateMainMethod() {
 
@@ -249,7 +252,6 @@ public class SoundProgrammerImpl implements ISoundProgrammer {
 	@Override
 	public void testCode(String javaClassprime) throws BadLocationException, IOException {
 		
-		System.out.println("--" + javaClassprime);
 		SOAnswerBuilder answerBuilder = new SOAnswerBuilder();
 
 		char[] characters = javaClassprime.toCharArray();
@@ -307,10 +309,12 @@ public class SoundProgrammerImpl implements ISoundProgrammer {
     	FileRepositoryBuilder builder = new FileRepositoryBuilder();
 
         try (Repository repository = builder
-          	    .setGitDir(new File("C:/Users/tushi/Documents/GitHub/test/.git"))
+          	    .setGitDir(new File(BASE_PATH + ".git"))
           	    .build()) {
             localPath = repository.getWorkTree();
-
+            
+            System.out.println(BASE_PATH);
+            
             try (Git git = new Git(repository)) {
                 // Stage all files in the repo including new files
             	

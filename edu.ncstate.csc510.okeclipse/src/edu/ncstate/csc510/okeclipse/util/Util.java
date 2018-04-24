@@ -63,15 +63,6 @@ public class Util {
 		IDocument doc = dp.getDocument(editor.getEditorInput());
 		return doc;
 	}
-
-	public static String getSelectedText() {
-		final ITextEditor editor = (ITextEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-				.getActiveEditor();
-		ITextSelection i = (ITextSelection) editor.getSelectionProvider().getSelection();
-		return i.getText();
-
-		
-	}
 	
 	public static void showOkEclipseView() {
 		try {
