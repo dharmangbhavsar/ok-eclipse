@@ -10,7 +10,9 @@ import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.CommandManager;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.*;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.custom.StyledText;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -62,6 +64,15 @@ public class Util {
 		return doc;
 	}
 
+	public static String getSelectedText() {
+		final ITextEditor editor = (ITextEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+				.getActiveEditor();
+		ITextSelection i = (ITextSelection) editor.getSelectionProvider().getSelection();
+		return i.getText();
+
+		
+	}
+	
 	public static void showOkEclipseView() {
 		try {
 

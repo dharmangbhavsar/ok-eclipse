@@ -245,11 +245,42 @@ public class SoundProgrammerImpl implements ISoundProgrammer {
 		}
 
 	}
-
+	
 	@Override
 	public void testCode(String javaClassprime) throws BadLocationException, IOException {
-		insertContent("Hello World!", 1);
-		return;
+		
+		System.out.println("--" + javaClassprime);
+		SOAnswerBuilder answerBuilder = new SOAnswerBuilder();
+
+		char[] characters = javaClassprime.toCharArray();
+
+		int start = -1;
+		int end = -1;
+
+		int added = 0;
+
+		for (int index = 0; index < javaClassprime.toCharArray().length; index++) {
+
+			if (end > start) {
+				String test_cases = answerBuilder.get_test_cases(javaClassprime.substring(start, end));
+				System.out.println(test_cases);
+				int position = added + end + 1;
+
+				insertContent(test_cases, position);
+
+				added += test_cases.length();
+				start = -1;
+				end = -1;
+			}
+
+			if (start > 0 && end == -1 && characters[index] == '$') {
+				end = index + 1;
+			} else if (start == -1 && characters[index] == '$') {
+				start = index + 1;
+			}
+
+		}
+
 	}
 	
 	@Override

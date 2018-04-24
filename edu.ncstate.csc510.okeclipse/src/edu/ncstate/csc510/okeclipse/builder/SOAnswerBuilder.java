@@ -34,6 +34,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import static java.lang.Integer.parseInt;
+import java.util.*;
+
 /**
  * 
  * @author Shrikanth N C
@@ -189,7 +191,165 @@ public class SOAnswerBuilder {
 
 		return stackoverflowAnswers;
 	}
-
+	
+	public String get_test_cases(String s) {
+		
+		String[] tmp= s.split("\\(")[0].split(" ");
+		String function_name = tmp[tmp.length - 1];
+		
+		s = s.split("\\(")[1].split("\\)")[0];
+		String[] param_arr = s.split(",");
+		
+		if(param_arr.length == 0)
+			return function_name + "();";
+		
+		String var, str;
+		String test_cases = "";
+		boolean[] bool_arr = { true, false };
+		byte[] byte_arr = { Byte.MIN_VALUE, 0, 1, 2, 4, 5, Byte.MAX_VALUE };
+		short[] short_arr = { Short.MIN_VALUE, -5, -1, 0, 1, 5, 10, Short.MAX_VALUE };
+		int[] int_arr = { Integer.MIN_VALUE, -5, -1, 0, 1, 5, 10, Integer.MAX_VALUE };
+		long[] long_arr = { Long.MIN_VALUE, -5, -1, 0, 1, 5, 10, Long.MAX_VALUE };
+		float[] float_arr = { Float.MIN_VALUE, -(float) Math.PI, 0, 1, (float) Math.PI, Float.MAX_VALUE };
+		double[] double_arr = { Double.MIN_VALUE, -Math.PI , 0, 1, Math.PI, Double.MAX_VALUE };
+		char[] char_arr = { 'a', 'z', '0', '9', ',', '\n', '\r', '?', '@', '#', '$' };
+		String[] string_arr = { "Apples", "John", "aba", "abCba", "XYZ", "abcdefghijklmnopqrstuvwxyz", "0123456789", "a", "z", "0", "9", "", " ", "\n", "!@#$%^&*(){}: " };
+		
+		
+		// Number of test cases
+		int cnt = 5;
+		int array_len = 3;
+		boolean is_array;
+		String arr_str, param;
+		while (cnt > 0){
+			str = function_name + "(";
+			if (param_arr.length > 0){
+				for (int i =0;i<param_arr.length;i++){//String param : param_arr) {
+					param = param_arr[i];
+					arr_str = "";
+					is_array = false;
+					if ((param.indexOf("[") > 0) && (param.indexOf("]") > 0)){
+						is_array = true;
+					}
+					param = param.replaceAll("\\[", "").replaceAll("\\]", "");
+					
+					var = param.trim().split(" ")[0];
+					
+					if (var.equals("boolean")) {
+						if(is_array){
+							arr_str = "new boolean[]{";
+							for(int q = 1; q <= array_len; q++){
+								arr_str += bool_arr[new Random().nextInt(bool_arr.length)] + ",";
+							}
+							arr_str = arr_str.substring(0, arr_str.length() - 1);
+							arr_str += "},";
+							str += arr_str;
+						}else
+							str += bool_arr[new Random().nextInt(bool_arr.length)] + ",";
+					}else if (var.equals("byte")) {
+						if(is_array){
+							arr_str = "new byte[]{";
+							for(int q = 1; q <= array_len; q++){
+								arr_str += byte_arr[new Random().nextInt(byte_arr.length)] + ",";
+							}
+							arr_str = arr_str.substring(0, arr_str.length() - 1);
+							arr_str += "},";
+							str += arr_str;
+						}else
+							str += byte_arr[new Random().nextInt(byte_arr.length)] + ",";
+					}else if (var.equals("short")) {
+						if(is_array){
+							arr_str = "new short[]{";
+							for(int q = 1; q <= array_len; q++){
+								arr_str += short_arr[new Random().nextInt(short_arr.length)] + ",";
+							}
+							arr_str = arr_str.substring(0, arr_str.length() - 1);
+							arr_str += "},";
+							str += arr_str;
+						}else
+							str += short_arr[new Random().nextInt(short_arr.length)] + ",";
+					}else if (var.equals("int")) {
+						if(is_array){
+							arr_str = "new int[]{";
+							for(int q = 1; q <= array_len; q++){
+								arr_str += int_arr[new Random().nextInt(int_arr.length)] + ",";
+							}
+							arr_str = arr_str.substring(0, arr_str.length() - 1);
+							arr_str += "},";
+							str += arr_str;
+						}else
+							str += int_arr[new Random().nextInt(int_arr.length)] + ",";
+					}else if (var.equals("long")) {
+						if(is_array){
+							arr_str = "new long[]{";
+							for(int q = 1; q <= array_len; q++){
+								arr_str += long_arr[new Random().nextInt(long_arr.length)] + ",";
+							}
+							arr_str = arr_str.substring(0, arr_str.length() - 1);
+							arr_str += "},";
+							str += arr_str;
+						}else
+							str += long_arr[new Random().nextInt(long_arr.length)] + ",";
+					}else if (var.equals("float")) {
+						if(is_array){
+							arr_str = "new float[]{";
+							for(int q = 1; q <= array_len; q++){
+								arr_str += float_arr[new Random().nextInt(float_arr.length)] + ",";
+							}
+							arr_str = arr_str.substring(0, arr_str.length() - 1);
+							arr_str += "},";
+							str += arr_str;
+						}else
+							str += float_arr[new Random().nextInt(float_arr.length)] + ",";
+					}else if (var.equals("double")) {
+						if(is_array){
+							arr_str = "new int[]{";
+							for(int q = 1; q <= array_len; q++){
+								arr_str += double_arr[new Random().nextInt(double_arr.length)] + ",";
+							}
+							arr_str = arr_str.substring(0, arr_str.length() - 1);
+							arr_str += "},";
+							str += arr_str;
+						}else
+							str += double_arr[new Random().nextInt(double_arr.length)] + ",";
+					}else if (var.equals("char")) {
+						if(is_array){
+							arr_str = "new char[]{";
+							for(int q = 1; q <= array_len; q++){
+								arr_str += char_arr[new Random().nextInt(char_arr.length)] + ",";
+							}
+							arr_str = arr_str.substring(0, arr_str.length() - 1);
+							arr_str += "},";
+							str += arr_str;
+						}else
+							str += char_arr[new Random().nextInt(char_arr.length)] + ",";
+					}else if (var.equals("String")) {
+						if(is_array){
+							arr_str = "new String[]{";
+							for(int q = 1; q <= array_len; q++){
+								arr_str += string_arr[new Random().nextInt(string_arr.length)] + ",";
+							}
+							arr_str = arr_str.substring(0, arr_str.length() - 1);
+							arr_str += "},";
+							str += arr_str;
+						}else
+							str += string_arr[new Random().nextInt(string_arr.length)] + ",";
+					}else {
+						cnt = 0;
+						test_cases = "// Unrecognized variable type: " + var;
+						break;
+					}					
+				}
+				str = str.substring(0, str.length() - 1);
+			}
+			str += ");\n";
+			test_cases += str;
+			cnt--;
+		}
+		System.out.println(test_cases);
+		return test_cases;
+	}
+	
 	public void create_function(String[] word) throws FileNotFoundException, IOException {
 	        String name=word[2];            //name of function
 	        String count_parameter= word[5];
