@@ -194,8 +194,16 @@ public class SOAnswerBuilder {
 	
 	public String get_test_cases(String s) {
 		
+		System.out.println("---------------------------------");
+		System.out.println(s);
+		System.out.println("---------------------------------");
+		
 		String[] tmp= s.split("\\(")[0].split(" ");
 		String function_name = tmp[tmp.length - 1];
+		String return_type = tmp[tmp.length - 2];
+
+		String var, str;
+		String test_cases = "public void unitTesting() { \n try {\n";
 		
 		s = s.split("\\(")[1].split("\\)")[0];
 		String[] param_arr = s.split(",");
@@ -203,8 +211,18 @@ public class SOAnswerBuilder {
 		if(param_arr.length == 0)
 			return function_name + "();";
 		
-		String var, str;
-		String test_cases = "";
+		boolean is_void;
+		if(return_type.equals("void"))
+			is_void = true;
+		else {
+			is_void = false;
+			if((return_type.indexOf("[") > 0) && (return_type.indexOf("]") > 0)) {
+				test_cases += return_type + "[] x;\n";
+			} else
+				test_cases += return_type + " x;\n";
+			
+		}
+		
 		boolean[] bool_arr = { true, false };
 		byte[] byte_arr = { Byte.MIN_VALUE, 0, 1, 2, 4, 5, Byte.MAX_VALUE };
 		short[] short_arr = { Short.MIN_VALUE, -5, -1, 0, 1, 5, 10, Short.MAX_VALUE };
@@ -222,7 +240,10 @@ public class SOAnswerBuilder {
 		boolean is_array;
 		String arr_str, param;
 		while (cnt > 0){
-			str = function_name + "(";
+			if(is_void)
+				str = function_name + "(";
+			else
+				str = "x = " + function_name + "(";
 			if (param_arr.length > 0){
 				for (int i =0;i<param_arr.length;i++){//String param : param_arr) {
 					param = param_arr[i];
@@ -343,9 +364,12 @@ public class SOAnswerBuilder {
 				str = str.substring(0, str.length() - 1);
 			}
 			str += ");\n";
+			if(!is_void)
+				str += "System.out.println(\""+ str.substring(4, str.length() - 2) +" : \" + x);\n";
 			test_cases += str;
 			cnt--;
 		}
+		test_cases += "} catch(Throwable e){ e.printStackTrace(); }\n }";
 		System.out.println(test_cases);
 		return test_cases;
 	}

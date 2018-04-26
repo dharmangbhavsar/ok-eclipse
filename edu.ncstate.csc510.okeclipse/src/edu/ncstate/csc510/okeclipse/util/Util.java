@@ -10,6 +10,7 @@ import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.CommandManager;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.text.*;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.custom.StyledText;
@@ -18,6 +19,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.texteditor.ITextEditor;
+import org.eclipse.jface.text.*;
 
 import edu.ncstate.csc510.okeclipse.views.OkEclipseView;
 
@@ -62,6 +64,25 @@ public class Util {
 		IDocumentProvider dp = ((ITextEditor) editor).getDocumentProvider();
 		IDocument doc = dp.getDocument(editor.getEditorInput());
 		return doc;
+	}
+	
+	public static String getCurrentSelection()
+	{
+	   IEditorPart part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().
+	   getActivePage().getActiveEditor();
+		if (part instanceof ITextEditor)
+		{
+		final ITextEditor editor = (ITextEditor) part;
+		IDocumentProvider prov = editor.getDocumentProvider();
+		IDocument doc = prov.getDocument(editor.getEditorInput());
+		ISelection sel = editor.getSelectionProvider().getSelection();
+		if (sel instanceof TextSelection)
+			{
+			ITextSelection textSel = (ITextSelection) sel;
+				return textSel.getText();
+			}
+		}
+	return "";
 	}
 	
 	public static void showOkEclipseView() {

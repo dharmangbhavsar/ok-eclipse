@@ -44,7 +44,9 @@ public class SoundProgrammerImpl implements ISoundProgrammer {
 	 * @author charan
 	 */
 	
-	public final static String BASE_PATH = System.getProperty("user.dir") + "/ok-eclipse/";
+	public final static String BASE_PATH = System.getProperty("user.dir") + "\\ok-eclipse\\";
+	
+	public final static String GIT_URL = "https://github.com/dharmangbhavsar/ok-eclipse";
 	
 	@Override
 	public String generateMainMethod() {
@@ -266,13 +268,12 @@ public class SoundProgrammerImpl implements ISoundProgrammer {
 			if (end > start) {
 				String test_cases = answerBuilder.get_test_cases(javaClassprime.substring(start, end));
 				System.out.println(test_cases);
+				
 				int position = added + end + 1;
 
 				insertContent(test_cases, position);
-
-				added += test_cases.length();
-				start = -1;
-				end = -1;
+				
+				return;
 			}
 
 			if (start > 0 && end == -1 && characters[index] == '$') {
@@ -344,19 +345,19 @@ public class SoundProgrammerImpl implements ISoundProgrammer {
     	FileRepositoryBuilder builder = new FileRepositoryBuilder();
 
         try (Repository repository = builder
-          	    .setGitDir(new File("C:/Users/tushi/Documents/GitHub/test/.git"))
+          	    .setGitDir(new File(BASE_PATH + ".git"))
           	    .build()) {
             localPath = repository.getWorkTree();
 
             try (Git git = new Git(repository)) {
             	RemoteAddCommand remoteAddCommand = git.remoteAdd();
             	remoteAddCommand.setName("origin");
-            	remoteAddCommand.setUri(new URIish("https://github.com/tushitarc/test"));
+            	remoteAddCommand.setUri(new URIish(GIT_URL));
             	remoteAddCommand.call();
                 
                 //Push Changes
                 PushCommand pushCommand = git.push();
-                pushCommand.setCredentialsProvider(new UsernamePasswordCredentialsProvider("username", "password"));
+                pushCommand.setCredentialsProvider(new UsernamePasswordCredentialsProvider("vortexwow911", "vortex911"));
                 pushCommand.call();
                 
                 System.out.println("Pushed all changes to repository");
@@ -368,7 +369,7 @@ public class SoundProgrammerImpl implements ISoundProgrammer {
 	public void gitPull() throws BadLocationException, IOException, GitAPIException
 	{
 		try {
-	        Repository localRepo = new FileRepository("C:/Users/tushi/Documents/GitHub/test/.git");//localPath.getAbsolutePath() + "/.git");
+	        Repository localRepo = new FileRepository(BASE_PATH + ".git");//localPath.getAbsolutePath() + "/.git");
 	        Git git = new Git(localRepo);
 
 	            PullCommand pullCmd = git.pull();
@@ -444,8 +445,6 @@ public class SoundProgrammerImpl implements ISoundProgrammer {
 				String generateStr = javaClassprime.substring(start, end).trim();
 				
 				String[] word = generateStr.split(" ");
-			    System.out.println("-->" + generateStr);
-			    System.out.println(word[1]);
 		        switch (word[1]){
 		            case "function":
 		            {
