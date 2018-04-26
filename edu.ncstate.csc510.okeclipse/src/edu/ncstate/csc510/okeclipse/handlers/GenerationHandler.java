@@ -25,6 +25,9 @@ public class GenerationHandler extends AbstractHandler {
 
 		try {
 			programmer.generateCode(Util.getCurrentEditorContent().get());
+			IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
+			IHandlerService handlerService = (IHandlerService) window.getService(IHandlerService.class);
+			handlerService.executeCommand("org.eclipse.jdt.ui.edit.text.java.format", null);
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}

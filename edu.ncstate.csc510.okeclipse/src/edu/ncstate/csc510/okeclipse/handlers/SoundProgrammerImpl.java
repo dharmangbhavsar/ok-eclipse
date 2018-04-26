@@ -438,7 +438,7 @@ public class SoundProgrammerImpl implements ISoundProgrammer {
 		int end = -1;
 
 		int added = 0;
-
+		String code = "";
 		for (int index = 0; index < javaClassprime.toCharArray().length; index++) {
 
 			if (end > start) {
@@ -446,22 +446,23 @@ public class SoundProgrammerImpl implements ISoundProgrammer {
 				
 				String[] word = generateStr.split(" ");
 		        
-				int position = added + end + 1;
+				int position = added + end + 3;
 
 				switch (word[1]){
 		            case "function":
 		            {
-		            	insertContent(answerBuilder.create_function(word), position); 
+		            	code = answerBuilder.create_function(word);
+		            	insertContent("/*\n" + code + "\n*/\n", position); 
 		                break;
 		            }
 		            case "class":{
-		            	insertContent(answerBuilder.create_class(word), position); 
-		                
+		            	code = answerBuilder.create_class(word);
+		            	insertContent("/*\n" + code + "\n*/\n", position);
 		                break;
 		            }
 		            case "loop":{
-		            	insertContent(answerBuilder.create_loop(word), position); 
-		                
+		            	code = answerBuilder.create_loop(word);
+		            	insertContent("/*\n" + code + "\n*/\n", position);
 		                break;
 		            }
 		            default:
