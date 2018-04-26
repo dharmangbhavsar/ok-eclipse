@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry exported="true" kind="lib" path="lib/org.eclipse.jdt.ui-3.12.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/sphinx/sphinx4-core/5prealpha-SNAPSHOT/sphinx4-core-5prealpha-20160628.232526-10-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/sphinx/sphinx4-core/5prealpha-SNAPSHOT/sphinx4-core-5prealpha-20160628.232526-10.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/sphinx/sphinx4-core/5prealpha-SNAPSHOT/sphinx4-core-5prealpha-SNAPSHOT-sources.jar"/>

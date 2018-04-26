@@ -23,10 +23,7 @@ public class TestHandler extends AbstractHandler {
 		ISoundProgrammer programmer = new SoundProgrammerImpl();
 
 		try {
-			programmer.testCode(Util.getCurrentSelection());
-			IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
-			IHandlerService handlerService = (IHandlerService) window.getService(IHandlerService.class);
-			handlerService.executeCommand("org.eclipse.jdt.ui.edit.text.java.format", null);
+			programmer.testCode(Util.getCurrentEditorContent().get());
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}

@@ -445,19 +445,22 @@ public class SoundProgrammerImpl implements ISoundProgrammer {
 				String generateStr = javaClassprime.substring(start, end).trim();
 				
 				String[] word = generateStr.split(" ");
-		        switch (word[1]){
+		        
+				int position = added + end + 1;
+
+				switch (word[1]){
 		            case "function":
 		            {
-		            	answerBuilder.create_function(word);
+		            	insertContent(answerBuilder.create_function(word), position); 
 		                break;
 		            }
 		            case "class":{
-		            	answerBuilder.create_class(word);
+		            	insertContent(answerBuilder.create_class(word), position); 
 		                
 		                break;
 		            }
 		            case "loop":{
-		            	answerBuilder.create_loop(word);
+		            	insertContent(answerBuilder.create_loop(word), position); 
 		                
 		                break;
 		            }

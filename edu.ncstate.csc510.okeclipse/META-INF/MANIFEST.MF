@@ -22,7 +22,8 @@ Bundle-ClassPath: lib/sphinx/sphinx4-core/5prealpha-SNAPSHOT/sphinx4-core-5preal
  lib/org.eclipse.jgit-4.11.0.201803080745-r.jar,
  lib/slf4j-api-1.7.25.jar,
  lib/slf4j-simple-1.7.25.jar,
- lib/text-3.3.0-v20070606-0010.jar
+ lib/text-3.3.0-v20070606-0010.jar,
+ lib/org.eclipse.jdt.ui-3.12.2.jar
 Bundle-Activator: edu.ncstate.csc510.okeclipse.common.OkEclipseActivator
 Import-Package: org.eclipse.ui.console,
  org.eclipse.ui.texteditor

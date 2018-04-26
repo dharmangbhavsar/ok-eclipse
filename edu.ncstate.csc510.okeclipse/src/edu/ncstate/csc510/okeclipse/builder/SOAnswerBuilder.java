@@ -12,6 +12,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.text.DefaultEditorKit.InsertContentAction;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
@@ -194,10 +196,6 @@ public class SOAnswerBuilder {
 	
 	public String get_test_cases(String s) {
 		
-		System.out.println("---------------------------------");
-		System.out.println(s);
-		System.out.println("---------------------------------");
-		
 		String[] tmp= s.split("\\(")[0].split(" ");
 		String function_name = tmp[tmp.length - 1];
 		String return_type = tmp[tmp.length - 2];
@@ -374,14 +372,14 @@ public class SOAnswerBuilder {
 		return test_cases;
 	}
 	
-	public void create_function(String[] word) throws FileNotFoundException, IOException {
+	public String create_function(String[] word) throws FileNotFoundException, IOException {
 	        String name=word[2];            //name of function
 	        String count_parameter= word[5];
 	        int count= parseInt(count_parameter);int i=0;
 	        String parameter_datatype= word[6];
 	        String return_type=word[word.length-1];
 	        BufferedReader filein =new BufferedReader(new FileReader(BASE_PATH + "\\skeleton\\function.txt"));
-	        BufferedWriter fileout =new BufferedWriter(new FileWriter(BASE_PATH + "\\skeleton\\function_output.java"));
+	        
 	        String line=filein.readLine();
 	        String parameter_final="";
 	        System.out.println(System.getProperty("user.dir"));
@@ -405,15 +403,12 @@ public class SOAnswerBuilder {
 	        {
 	            parameter_final="";
 	        }
-	            
 	        
-	        
-	        
-	        
+	        String code = "";
 	        //System.out.println(parameter_final);
 	        while(line!=null)
 	        {
-	            line = line.replace("datatype", return_type);  
+	          line = line.replace("datatype", return_type);  
 	          line=line.replace("name", name);
 	            
 	          line=line.replace("parameter", parameter_final);
@@ -432,32 +427,21 @@ public class SOAnswerBuilder {
 	              line=line.replace("return null;", "return false;");
 	          }
 	         
-	         
-	            System.out.println(line);
-	          
+	           code += line;
 	            
-	           try{
-	            fileout.write(line);
-	            fileout.newLine();
-	           }catch(IOException e){
-	               System.out.println(e);
-	           }
 	           line=filein.readLine();
 	        }
-	        fileout.close();
-	        
-	        
+	        return code;
 	       
 	}
 	
-	public void create_class(String[] word) throws IOException {
+	public String create_class(String[] word) throws IOException {
 	         String name=word[2];            //name of function
 	        String count_var= word[4];
 	        int count= parseInt(count_var);int i=0;
 	        String var_type= word[5];
 	        String var_datatype= word[6];
 	        BufferedReader filein =new BufferedReader(new FileReader(BASE_PATH + "\\skeleton\\class.txt"));
-	        BufferedWriter fileout =new BufferedWriter(new FileWriter(BASE_PATH + "\\skeleton\\class_output.java"));
 	        String line=filein.readLine();
 	    
 	        
@@ -479,6 +463,7 @@ public class SOAnswerBuilder {
 	        }
 	         final_var=final_var+";";
 	         name=name.toUpperCase();
+	         String code = "";
 	         while(line!=null)
 	        {
 	           
@@ -487,47 +472,34 @@ public class SOAnswerBuilder {
 	         line=line.replace("variable_data_type", var_datatype);
 	         line=line.replace("variable_name",final_var);
 	          
-	       
 	         
-	            System.out.println(line);
-	          
+	          code += line;
 	            
-	           try{
-	            fileout.write(line);
-	            fileout.newLine();
-	           }catch(IOException e){
-	               System.out.println(e);
-	           }
 	           line=filein.readLine();
 	        }
-	        fileout.close();
+	         return code;
 	        
 	}
-	public void create_loop(String[] word) throws IOException {
+	public String create_loop(String[] word) throws IOException {
 	      String limit=word[3];            //number of iterations
 	        int count= parseInt(limit);int i=0;
 	        BufferedReader filein =new BufferedReader(new FileReader(BASE_PATH + "\\skeleton\\loop.txt"));
-	        BufferedWriter fileout =new BufferedWriter(new FileWriter(BASE_PATH + "\\skeleton\\loop_output.java"));
+	        
 	        String line=filein.readLine();
 	    
+	        String code = "";
 	        
 	        //generate class abc with 3 public int variables 
 	         while(line!=null)
 	        {
 	           
-	         line=line.replace("limit", limit);
-	            System.out.println(line);
+	        	line=line.replace("limit", limit);
 	          
+	           code += line; 
 	            
-	           try{
-	            fileout.write(line);
-	            fileout.newLine();
-	           }catch(IOException e){
-	               System.out.println(e);
-	           }
 	           line=filein.readLine();
 	        }
-	        fileout.close();
+	         return code;
 	          
 	}
 
