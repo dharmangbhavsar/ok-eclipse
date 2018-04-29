@@ -19,6 +19,22 @@ Extending the efforts of Group 'O' during the previous iteration of the project.
 ## Demo (Recommended)
 ----------------
 
+## Features
+Voice commands in the plugin can be given by pressing "Shift + Z".
+The main features of the plugin are:-   
+1) **Code Generation** - Generated classes, for loops and functions accroding to the description provided by the user.  
+Use voice command "generate" and then say "a class with four private integer member variables". This will create a class with four private integer member variables. OR. You could write the above command in between "$" signs in the Eclipse environment and press "Shift + G". e.g. - $ generate a function with three string parameters $. This will generate a function with three string parameters.  
+2) **Code Conversion** - Converts code from java to python. (*Requires network connection*)  
+Write your java program and then give the voice command "convert". This will convert your file from Java to Python. The converted file will not necessarily run. But it will give a warning on the screen about the exact line that might case problems if the file is ran.  
+3) **Git Integration** - git status, git commit, git push and git pull are implemented in the plugin.   
+For git status - say "status" or press "Shift + S".  
+For git commit - say "commit" or press "Shift + C".  
+For git push - say "push" or press "Shift + P".  
+For git pull - say "pull" or press "Shift + U".  
+4) **Unit Testing** - performs unit testing on the function selected.  
+First select the whole function in Eclipse environment and then give the voice commands "testing" or press "Shift + T".  
+This will generate another function that will call the function to be tested on different parameters. Run the program again to see the results of the function being called on different parameters and the output given by the function. The results are shown in the Eclipse console and the module also shows results if errors or exceptions are thrown by Java.  
+
 ## @authors
 This version: - 
 [Dharmang Bhavsar](https://www.github.com/dharmangbhavsar) | [Vismay Golwala](https://github.com/vismay-golwala) | [Srija Ganguly](https://github.com/SrijaGanguly) | [Tushita Roychaudhury](https://github.com/tushitarc)
