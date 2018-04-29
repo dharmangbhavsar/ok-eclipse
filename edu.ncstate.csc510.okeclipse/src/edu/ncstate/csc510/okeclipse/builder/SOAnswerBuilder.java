@@ -427,7 +427,7 @@ public class SOAnswerBuilder {
 	              line=line.replace("return null;", "return false;");
 	          }
 	         
-	           code += line;
+	           code += line + "\n";
 	            
 	           line=filein.readLine();
 	        }
@@ -473,7 +473,7 @@ public class SOAnswerBuilder {
 	         line=line.replace("variable_name",final_var);
 	          
 	         
-	          code += line;
+	         code += line + "\n";
 	            
 	           line=filein.readLine();
 	        }
@@ -495,7 +495,7 @@ public class SOAnswerBuilder {
 	           
 	        	line=line.replace("limit", limit);
 	          
-	           code += line; 
+	        	code += line + "\n";
 	            
 	           line=filein.readLine();
 	        }
