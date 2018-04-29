@@ -21,7 +21,7 @@ Extending the efforts of Group 'O' during the previous iteration of the project.
 
 ## @authors
 This version: - 
-[Dharmang Bhavsar](https://www.github.com/dharmangbhavsar) | [Vismay Golwala] (https://github.com/vismay-golwala) | [Srija Ganguly](https://github.com/SrijaGanguly) | [Tushita Roychaudhury](https://github.com/tushitarc)
+[Dharmang Bhavsar](https://www.github.com/dharmangbhavsar) | [Vismay Golwala](https://github.com/vismay-golwala) | [Srija Ganguly](https://github.com/SrijaGanguly) | [Tushita Roychaudhury](https://github.com/tushitarc)
 
 Previous version:-
 [Shrikanth N C](https://www.linkedin.com/in/shrikanthnc/) | [Karthik Medidisiva](https://github.com/kmedidi)   | [Kashyap Sivasubramanian](https://github.com/ksivasu)   | [Charan Ram Vellaiyur Chellaram](https://github.com/cvellai)  
