@@ -73,4 +73,6 @@ public interface ISoundProgrammer {
 
 	public void generateCode(String string) throws BadLocationException, IOException ;
 
+	void convertCode(String javaClassprime) throws BadLocationException, IOException;
+
 }
