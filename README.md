@@ -6,7 +6,7 @@ Extending the efforts of Group 'O' during the previous iteration of the project.
 
 ## Installing Ok Eclipse
 
-1. Download & extract this [ok_eclipse.zip](https://tiny.cc/downloadokeclipse), requires Java ( we use java version "1.8.0_151" ) on Windows machine.
+1. Download & extract this [ok_eclipse.zip](https://drive.google.com/open?id=1mSrwdvPe4_BD487jVamrombuNvbGmr3k), requires Java ( we use java version "1.8.0_151" ) on Windows machine.
 1. Run the executable **eclipse.exe** inside the extracted eclipse folder. 
 1. Select *Launch* if a workspace dialog appears.
 1. You will see a progress dialog initializing **Ok Eclipse**. 
