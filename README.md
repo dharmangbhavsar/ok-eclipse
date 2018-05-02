@@ -24,7 +24,7 @@ Extending the efforts of Group 'O' during the previous iteration of the project.
 ## Demo (Recommended)
 ----------------
 
-## Features
+## Enhancements and new Features
 Voice commands in the plugin can be given by pressing "Shift + Z".
 The main features of the plugin are:-   
 1) **Code Generation** - Generated classes, for loops and functions accroding to the description provided by the user.  
@@ -39,6 +39,10 @@ For git pull - say "pull" or press "Shift + U".
 4) **Unit Testing** - performs unit testing on the function selected.  
 First select the whole function in Eclipse environment and then give the voice commands "testing" or press "Shift + T".  
 This will generate another function that will call the function to be tested on different parameters. Run the program again to see the results of the function being called on different parameters and the output given by the function. The results are shown in the Eclipse console and the module also shows results if errors or exceptions are thrown by Java.  
+5) **Sphinx changes** - some changes to recognise full sentence.  
+We added some stop time between each word in a sentece so that CMU Sphinx could recognise different words in a sentence. A user has to take a break of about 0.5 secs between each word spoken for the Sphinx system to understand the word correctly.  
+6) **Added Shortcuts** - adding shortcuts for each feature.  
+During user surveys some users found it prety difficult to work with the voice recognition system. So shortcuts for each feature were added and are written in the section of the feature itself.  
 
 ## @authors
 This version: - 
