@@ -51,6 +51,6 @@ This version: -
 Previous version:-
 [Shrikanth N C](https://www.linkedin.com/in/shrikanthnc/) | [Karthik Medidisiva](https://github.com/kmedidi)   | [Kashyap Sivasubramanian](https://github.com/ksivasu)   | [Charan Ram Vellaiyur Chellaram](https://github.com/cvellai)  
 
-<>![](https://github.com/snaraya7/Ok_Eclipse/blob/master/img/fly.JPG).
+
 
 
