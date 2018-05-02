@@ -16,6 +16,11 @@ Extending the efforts of Group 'O' during the previous iteration of the project.
 
 **And ya one more thing, please use a dedicated _microphone_ in a noise free environment.**
 
+## Prerequisites  
+1. JDK 8 or above  
+1. Eclipse IDE  
+1. Downloaded .zip file from the above section
+
 ## Demo (Recommended)
 ----------------
 
