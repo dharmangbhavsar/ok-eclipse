@@ -22,7 +22,7 @@ Extending the efforts of Group 'O' during the previous iteration of the project.
 1. Downloaded .zip file from the above section
 
 ## Demo (Recommended)
-----------------
+[Demo Video](https://drive.google.com/file/d/1ZylbIDkCvG9A_uAloH3o2l2N0H8rdYcG/view)
 
 ## Enhancements and new Features
 Voice commands in the plugin can be given by pressing "Shift + Z".
