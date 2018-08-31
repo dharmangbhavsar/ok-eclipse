@@ -1,6 +1,9 @@
 
 # Ok Eclipse - CSC 510 Software Engineering (Spring 2018) project - Group 'D' <Enter>[](https://github.com/dharmangbhavsar/ok-eclipse) 
 
+## Demo (Recommended)
+[Demo Video](https://drive.google.com/file/d/1ZylbIDkCvG9A_uAloH3o2l2N0H8rdYcG/view)
+
 ## About
 Extending the efforts of Group 'O' during the previous iteration of the project. To include other software development life cycle elements in to the mix in Eclipse like unite testing and git integration.
 
@@ -20,9 +23,6 @@ Extending the efforts of Group 'O' during the previous iteration of the project.
 1. JDK 8 or above  
 1. Eclipse IDE  
 1. Downloaded .zip file from the above section
-
-## Demo (Recommended)
-[Demo Video](https://drive.google.com/file/d/1ZylbIDkCvG9A_uAloH3o2l2N0H8rdYcG/view)
 
 ## Enhancements and new Features
 Voice commands in the plugin can be given by pressing "Shift + Z".
